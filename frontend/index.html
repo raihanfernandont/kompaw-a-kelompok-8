@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Perpustakaan Digital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>📚 Perpustakaan Digital</h1>
+        <p>Sistem Peminjaman Buku Berbasis Cloud</p>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>Register Member</h2>
+            <input type="text" id="regName" placeholder="Nama">
+            <input type="email" id="regEmail" placeholder="Email">
+            <input type="password" id="regPassword" placeholder="Password">
+            <input type="text" id="regPhone" placeholder="Nomor Telepon">
+            <textarea id="regAddress" placeholder="Alamat"></textarea>
+            <button onclick="register()">Register</button>
+        </section>
+
+        <section class="card">
+            <h2>Login</h2>
+            <input type="email" id="loginEmail" placeholder="Email">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button onclick="login()">Login</button>
+            <button onclick="logout()">Logout</button>
+            <p id="loginInfo"></p>
+        </section>
+
+        <section class="card">
+            <h2>Daftar Buku</h2>
+            <input type="text" id="searchInput" placeholder="Cari judul / penulis / kategori">
+            <button onclick="searchBooks()">Cari</button>
+            <button onclick="loadBooks()">Tampilkan Semua</button>
+            <div id="books"></div>
+        </section>
+
+        <section class="card">
+            <h2>Riwayat Peminjaman Saya</h2>
+            <button onclick="loadMyLoans()">Lihat Riwayat Saya</button>
+            <div id="myLoans"></div>
+        </section>
+
+        <section class="card admin">
+            <h2>Admin - Semua Peminjaman</h2>
+            <button onclick="loadAllLoans()">Lihat Semua Peminjaman</button>
+            <div id="allLoans"></div>
+        </section>
+
+        <section class="card admin">
+            <h2>Admin - Tambah Buku</h2>
+            <input type="text" id="bookTitle" placeholder="Judul">
+            <input type="text" id="bookAuthor" placeholder="Penulis">
+            <input type="text" id="bookIsbn" placeholder="ISBN">
+            <input type="number" id="bookCategory" placeholder="ID Kategori">
+            <input type="text" id="bookPublisher" placeholder="Penerbit">
+            <input type="number" id="bookYear" placeholder="Tahun">
+            <textarea id="bookDescription" placeholder="Deskripsi"></textarea>
+            <input type="number" id="bookStock" placeholder="Stok">
+            <button onclick="addBook()">Tambah Buku</button>
+        </section>
+
+        <section class="card admin">
+            <h2>Admin - Dashboard</h2>
+            <button onclick="loadStats()">Lihat Statistik</button>
+            <div id="stats"></div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
