@@ -1,0 +1,45 @@
+name: CI Docker Build Check
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create env file
+        run: |
+          echo "DB_NAME=perpustakaan_db" >> .env
+          echo "DB_USER=perpus_user" >> .env
+          echo "DB_PASSWORD=perpus_password" >> .env
+          echo "SECRET_KEY=ini_secret_key_panjang_minimal_32_karakter" >> .env
+          echo "DEBUG=True" >> .env
+
+      - name: Build Docker Compose services
+        run: docker compose build
+
+      - name: Run Docker Compose
+        run: docker compose up -d
+
+      - name: Check running containers
+        run: docker compose ps
+
+      - name: Test backend health endpoint
+        run: |
+          sleep 15
+          curl --fail http://localhost/api/health
+
+      - name: Stop containers
+        if: always()
+        run: docker compose down
